@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
-    <meta charset="UTF-8">
-    <title>All Users</title>
-</head>
-<body>
-    <h1>All Users in Database</h1>
-    <center>
+{% extends 'base.html' %}
+
+{% block title %}
+All Users
+{% endblock %}
+
+{% block body %}
+
+<h1>All Users in Database</h1>
+<center>
     <h3>This page shows all database users</h3>
     <hr>
     <table>
@@ -29,6 +29,7 @@
             <td style="text-align:center;">{{user.age}}</td>
             <td style="text-align:center;">{{user.isAdmin}}</td>
             <td style="text-align: center;">
+                <!-- EDIT -->
                 <form method="post">
                     <input type="hidden" name="edit_current_user" value="{{ user.id }}">
                     <button class="editUser" type="submit">Edit</button>
@@ -38,7 +39,7 @@
     </table>
     <hr>
     {% endfor %}
-    </center>
 
-</body>
-</html>
+</center>
+
+{% endblock %}

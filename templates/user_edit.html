@@ -1,51 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
-    <meta charset="UTF-8">
-    <title>Edit User</title>
-</head>
-<body>
-    <h1>Edit User in Database</h1>
-    <center>
-    <h3>This page allows edit database user data</h3>
-    <hr>
-        <form action="/edit_user" method="post">
-            <table>
-                <tr>
-                    <th>User Name</th>
-                    <th>User PWD</th>
-                    <th>User Age</th>
-                    <th style="text-align:center;">Is Admin</th>
-                </tr>
-                <tr>
-                    <td><input class="inputEditUser" style="width:98%" type="text" name="name" value="{{user.name}}"></td>
-                    <td><input class="inputEditUser" style="width:98%" type="text" name="password" value="{{user.password}}"></td>
-                    <td><input class="inputEditUser" style="width:98%" type="number" min="1" max="120" name="age" value="{{user.age}}"></td>
-                    <td><input class="inputEditUser" style="width:98%" type="checkbox" name="isAdmin" {% if user.isAdmin %}checked{% endif %} value="true"></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td style="height:30px; text-align:center;">
-                        <input type="hidden" name="submit_user" value="{{ user.id }}">
-                        <button class="editUser" type="submit">Save Data</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <form action="/edit_user" method="post">
-            <table>
-                <tr>
-                    <td style="height:30px; text-align:center;">
-                        <input type="hidden" name="delete_user" value="{{ user.id }}">
-                        <button class="editUser" type="submit" style="color:red;">Delete User</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    <hr>
-    </center>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}
+Edit User
+{% endblock %}
+
+{% block body %}
+
+<h1>Edit User</h1>
+<center>
+<h3>Edit database user data</h3>
+<hr>
+    <form action="/user_edit" method="post">
+        <table style="width:80%;">
+            <tr>
+                <!-- LABELS -->
+                <th style="width:45%;">Name</th>
+                <th style="width:45%;">Password</th>
+                <th style="text-align:center;">Age</th>
+                <th style="text-align:center;">Admin</th>
+            </tr>
+            <tr>
+                <!-- INPUT -->
+                <td><input class="inputEditUser" style="width:98%" type="text" name="name" value="{{user.name}}"></td>
+                <td><input class="inputEditUser" style="width:98%" type="text" name="password" value="{{user.password}}"></td>
+                <td style="text-align:center;"><input class="inputEditUser" style="width:40px; text-align:right;" type="number" min="1" max="120" name="age" value="{{user.age}}"></td>
+                <td style="text-align: center;"><input class="inputEditUser" style="width:20px; height:20px; vertical-align: middle;" type="checkbox" name="isAdmin" {% if user.isAdmin %}checked{% endif %} value="true"></td>
+            </tr>
+        </table>
+        <table style="padding-top: 5px;">
+            <tr>
+                <!-- SAVE DATA -->
+                <td style="height:30px; text-align:center;">
+                    <input type="hidden" name="submit_data" value="{{ user.id }}">
+                    <button class="editUser" type="submit" style="border:solid; border-width:1px; border-color: #949bf8;">Save Data</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <form action="/user_edit" method="post">
+        <table>
+            <tr>
+                <!-- DELETE DATA -->
+                <td style="height:30px; text-align:center;">
+                    <input type="hidden" name="delete_data" value="{{ user.id }}">
+                    <button class="editUser" type="submit" style="color:red; border:solid; border-width:1px; border-color: #949bf8;">Delete User</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+<hr>
+</center>
+
+{% endblock %}
