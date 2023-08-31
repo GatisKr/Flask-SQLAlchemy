@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
+    <meta charset="UTF-8">
+    <title>All Messages</title>
+</head>
+<body>
+    <h1>All Messages in Database</h1>
+    <center>
+    <h3>This page shows all database messages</h3>
+    </center>
+    <hr>
+    {% for message in messages %}
+        <form method="post">
+            Message Title: <strong>{{message.title}}</strong><br>
+            Message Text: <strong>{{message.messageText}}</strong><br>
+            Message Priority: <strong>{{message.priority}}</strong><br>
+        </form>
+        <hr>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User in Database</h1>
+    <center>
+    <h3>This page allows edit database user data</h3>
+    <hr>
+        <form action="/edit_user" method="post">
+            <table>
+                <tr>
+                    <th>User Name</th>
+                    <th>User PWD</th>
+                    <th>User Age</th>
+                    <th style="text-align:center;">Is Admin</th>
+                </tr>
+                <tr>
+                    <td><input class="inputEditUser" style="width:98%" type="text" name="name" value="{{user.name}}"></td>
+                    <td><input class="inputEditUser" style="width:98%" type="text" name="password" value="{{user.password}}"></td>
+                    <td><input class="inputEditUser" style="width:98%" type="number" min="1" max="120" name="age" value="{{user.age}}"></td>
+                    <td><input class="inputEditUser" style="width:98%" type="checkbox" name="isAdmin" {% if user.isAdmin %}checked{% endif %} value="true"></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td style="height:30px; text-align:center;">
+                        <input type="hidden" name="submit_user" value="{{ user.id }}">
+                        <button class="editUser" type="submit">Save Data</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form action="/edit_user" method="post">
+            <table>
+                <tr>
+                    <td style="height:30px; text-align:center;">
+                        <input type="hidden" name="delete_user" value="{{ user.id }}">
+                        <button class="editUser" type="submit" style="color:red;">Delete User</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    <hr>
+    </center>
+
+</body>
+</html>

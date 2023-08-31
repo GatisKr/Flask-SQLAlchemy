@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+    <h1>Add New User</h1>
+    <center>
+    <h3>In this page you can add a new post to database</h3>
+    <hr><br>
+    <form method="post">  <!-- ar post nodod datus tālāk apstrādei-->
+        <input type="text" name="name" placeholder="Enter User name"><br><br>
+        <input type="password" name="password" placeholder="Enter Password"><br><br>
+        <input type="number" min="1" max="120" name="age" placeholder="Enter Age"><br><br>
+        <label style="display: inline-block;">Check for Admin:</label>
+        <input type="checkbox" name="isAdmin" style="width: 20px; height: 20px; vertical-align: middle;"><br><br>
+        <button type="submit">Add new user</button>
+    </form>
+    </center>
+
+</body>
+</html>

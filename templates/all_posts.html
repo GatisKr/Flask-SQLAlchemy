@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
+    <meta charset="UTF-8">
+    <title>All Posts</title>
+</head>
+<body>
+    <h1>All Database Posts</h1>
+    <center>
+    <h3>In this page you can view all database posts</h3>
+    </center>
+    <hr>
+    {% for post in posts %}
+        <h4>{{post.title}}</h4>
+        {{post.text}}
+        <hr>
+    {% endfor %}
+</body>
+</html>

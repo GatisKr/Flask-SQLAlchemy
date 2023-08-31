@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Database Main Page
+{% endblock %}
+
+{% block body %}
+<center>
+    <h1>Database Manager Page</h1>
+        <h3>In this page you can edit, add and see database fields</h3>
+        <hr>
+            <h4>Post Table</h4>
+                <a href="/add_post"><button>Add New Post</button></a><br><br>
+                <a href="/all_posts"><button>Read all posts</button></a><br><br>
+                <hr>
+            <h4>Message Table</h4>
+                <a href="/add_message"><button>Add New Message</button></a><br><br>
+                <a href="/all_messages"><button>Read all messages</button></a><br><br>
+                <hr>
+            <h4>User Table</h4>
+                <a href="/add_user"><button>Add New User</button></a><br><br>
+                <a href="/all_users"><button>Show all users</button></a><br><br>
+                <hr>
+</center>
+{% endblock %}

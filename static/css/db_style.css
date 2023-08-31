@@ -1,0 +1,99 @@
+body {
+    background-color: #bec2ff;
+    font-family: helvetica;
+    color: #000078;
+}
+
+hr {
+    border-color: #949bf8;
+}
+
+h1 {
+    padding-top: 5px; /* attālums tag augšā */
+    height: 40px;
+    background-color: #949bf8; /* virsraksta fona krāsa */
+    text-align: center;
+    color: white;
+    margin: auto; /* izvieto virsrakstu pa vidu */
+    border-radius: 0px;
+    font-family: helvetica;
+}
+
+table {
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+}
+
+th,
+td {
+    width: 10%;
+}
+
+button {
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #949bf8;
+    color: white;
+    border: transparent;
+    border-radius: 30px;
+}
+
+button:hover {
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #ffb988;
+    color: black;
+}
+
+.delUser,
+.editUser {
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    background-color: #949bf8;
+    color: black;
+    border: transparent;
+    border-radius: 0px;
+}
+
+.delUser:hover,
+.editUser:hover {
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    background-color: #ffb988;
+    color: black;
+    border: transparent;
+    border-radius: 0px;
+}
+
+input {
+    width: 200px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.inputEditUser {
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+}
+
+textarea {
+    font-family: helvetica;
+    font-size: 14px;
+    width: 200px;
+    height: 60px;
+}
+
+p{
+    background-color:pink;
+    width: 1500px;
+    height: 200px;
+    color: white;
+    font-family: Arial;
+    text-align: right;
+}
