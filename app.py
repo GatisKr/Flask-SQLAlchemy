@@ -78,9 +78,9 @@ def message_all():  # Query all posts from the database using the Post model
     return render_template('message_all.html', messages=messages)
 
 
-@app.route("/add_user", methods=['POST', 'GET'])
+@app.route("/user_add", methods=['POST', 'GET'])
 def add_user():
-    fn = "add_user:"
+    fn = "/user_add:"
     if request.method == 'POST':
         # add is Admin field
         isAdmin = False

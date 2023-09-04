@@ -3,11 +3,9 @@ body {
     font-family: helvetica;
     color: #000078;
 }
-
 hr {
     border-color: #949bf8;
 }
-
 h1 {
     padding-top: 5px; /* attālums tag augšā */
     height: 40px;
@@ -18,70 +16,24 @@ h1 {
     border-radius: 0px;
     font-family: helvetica;
 }
-
 table {
     width: 100%;
     font-size: 14px;
     text-align: left;
 }
-
-th,
-td {
+th, td {
     width: 10%;
 }
-
-button {
-    width: 250px;
-    height: 40px;
-    font-size: 20px;
-    background-color: #949bf8;
-    color: white;
-    border: transparent;
-    border-radius: 30px;
-}
-
-button:hover {
-    width: 250px;
-    height: 40px;
-    font-size: 20px;
-    background-color: #ffb988;
-    color: black;
-}
-
-.delUser,
-.editUser {
-    width: 100px;
-    height: 20px;
-    font-size: 12px;
-    background-color: #949bf8;
-    color: black;
-    border: transparent;
-    border-radius: 0px;
-}
-
-.delUser:hover,
-.editUser:hover {
-    width: 100px;
-    height: 20px;
-    font-size: 12px;
-    background-color: #ffb988;
-    color: black;
-    border: transparent;
-    border-radius: 0px;
-}
-
 input {
     width: 200px;
     height: 30px;
     font-size: 14px;
 }
-
 .inputEditUser {
     width: 150px;
     height: 30px;
     font-size: 14px;
 }
-
 textarea {
     font-family: helvetica;
     font-size: 14px;
@@ -89,11 +41,74 @@ textarea {
     height: 60px;
 }
 
-p{
-    background-color:pink;
-    width: 1500px;
-    height: 200px;
+/* Buttons */
+button {
+    width: 250px;
+    height: 40px;
+    font-size: 20px;
+    background-color: #949bf8;
     color: white;
-    font-family: Arial;
-    text-align: right;
+    border: transparent;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #ffb988;
+    color: #000078;
+}
+.delUser, .editUser, .popup-confirm {
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    background-color: #949bf8;
+    color: #000078;
+    border: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    border-color: #949bf8;
+}
+.delUser:hover, .editUser:hover, .popup-confirm:hover {
+    width: 100px;
+    height: 20px;
+    font-size: 12px;
+    background-color: #ffb988;
+    color: black;
+}
+
+/* JS Popup */
+.popup-container {
+    display: none;
+    position: static;
+    width: 180px;
+    height: 80px;
+    background-color: rgba(0,0,0,0.5);
+    border: transparent;
+    border-width: 1px;
+    border-radius: 5px;
+    transform: translate(0%, -110%);
+    z-index: 1;
+}
+.popup-content {
+    background-color: white;
+    position: static;
+    top: 100%;
+    right: 100%;
+    left: 100%;
+    height: 100%;
+
+    border: transparent;
+    border-width: 1px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    text-align: center;
+}
+.popup-close, {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.popup-confirm {
+    margin-top: 0px;
 }
