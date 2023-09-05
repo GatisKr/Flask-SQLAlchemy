@@ -37,7 +37,7 @@ def post_all():  # Query all posts from the database using the Post model
     from Database import Post
     posts = Post.query.all()  # Retrieve all Post records from the database
 
-    # Later add here post delete function
+    # add here post delete function
 
     return render_template('post_all.html',
                            posts=posts)  # Render the 'post_all.html' template and pass the retrieved posts to it
@@ -73,16 +73,15 @@ def message_all():  # Query all posts from the database using the Post model
     from Database import Message
     messages = Message.query.all()  # Retrieve all Message records from the database
 
-    # Later add here post delete function
+    # add here post delete function
 
     return render_template('message_all.html', messages=messages)
 
 
 @app.route("/user_add", methods=['POST', 'GET'])
-def add_user():
+def user_add():
     fn = "/user_add:"
     if request.method == 'POST':
-        # add is Admin field
         isAdmin = False
 
         if "isAdmin" in request.form:
@@ -94,13 +93,14 @@ def add_user():
         print(fn, "User variables:", name, password, age, isAdmin)
 
         from Database import User
-        user = User(name=name, password=password, age=int(age), isAdmin=isAdmin)
 
         try:
+            user = User(name=name, password=password, age=int(age), isAdmin=isAdmin)
             db.session.add(user)
-            db.session.commit()  # saglabājam imaiņas
+            db.session.commit()  # save changes to database
             print(fn, "Successfully added new user")
             return redirect("/")
+
         except:
             return "Error while adding user to database"
 
@@ -108,60 +108,39 @@ def add_user():
         return render_template("user_add.html")
 
 
-@app.route("/user_all", methods=['POST', 'GET'])
+@app.route("/user_all", methods=['GET'])
 def user_all():
     from Database import User
-    fn = "/user_all:"
-    n = 1
-    print(n, fn, "Started /user_all")
-
     users = User.query.all()
+    print("/user_all: User information acquired")
+    return render_template("user_all.html", allUsers=users)
 
-    n += 1
-    print(n, fn, "Variable users:")
 
-    for i in users:
-        print(i, end=" ")
-    print()
+@app.route("/user_edit", methods=['POST'])
+def user_edit():
+    id_edit = request.form.get('edit_current_user')
+    id_delete = request.form.get('delete_data')
+    id_submit = request.form.get('submit_data')
+    print(f"id_edit: {id_edit}; id_delete: {id_delete}; id_submit: {id_submit}")
 
-    if request.method == 'POST':
-        user_id_to_edit = request.form.get('edit_current_user')  # Get the ID of the user to
+    if id_edit:
+        from function import id_edit_fn
+        id_fn = id_edit
+        return id_edit_fn(id_fn)
 
-        n += 1
-        print(n, fn, "user_id_to_edit =", user_id_to_edit)
+    elif id_delete:
+        from function import id_delete_fn
+        id_fn = id_delete
+        return id_delete_fn(id_fn)
 
-        if user_id_to_edit:
-            n += 1
-            print(n, fn, "Triggered EDIT_USER command")
-
-            user = User.query.get(user_id_to_edit)
-
-            n += 1
-            print(n, fn, "User variable:", user)
-
-            if user:
-                # Pass the user data to the edit_user.html template
-                return render_template("user_edit.html", user=user)
-            else:
-                return "User not found"
-
-        else:
-            return "No user_id_to_edit"
+    elif id_submit:
+        from function import id_submit_fn
+        id_fn = id_submit
+        return id_submit_fn(id_fn)
 
     else:
-        return render_template("user_all.html", allUsers=users)
-
-
-@app.route("/user_edit", methods=['POST', 'GET'])
-def user_edit():
-    print("Invoked user_edit form")
-
-    from function import submit_data
-    submit_data()
-
-    return redirect("/")
+        return "No user_id_to_edit"
 
 
 if __name__ == '__main__':  # Run the Flask app if this script is executed directly
     app.run(debug=True)     # All the root paths should be above
-

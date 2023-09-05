@@ -8,7 +8,7 @@ All Users
 
 <h1>All Users in Database</h1>
 <center>
-    <h3>This page shows all database users</h3>
+    <h3>All database users</h3>
     <hr>
     <table>
         <tr>
@@ -16,7 +16,7 @@ All Users
             <th>User PWD</th>
             <th style="text-align:center;">User Age</th>
             <th style="text-align:center;">Is Admin</th>
-            <th style="text-align:center;">Edit Data</th>
+            <th style="text-align:center; width:10%;">Edit User</th>
         </tr>
     </table>
     <hr>
@@ -28,11 +28,11 @@ All Users
             <td>{{user.password}}</td>
             <td style="text-align:center;">{{user.age}}</td>
             <td style="text-align:center;">{{user.isAdmin}}</td>
-            <td style="text-align: center;">
+            <td style="text-align:center;">
                 <!-- EDIT -->
-                <form method="post">
+                <form action="/user_edit" method="POST">
                     <input type="hidden" name="edit_current_user" value="{{ user.id }}">
-                    <button class="editUser" type="submit">Edit</button>
+                    <button class="smallButton" type="submit">Edit</button>
                 </form>
             </td>
         </tr>

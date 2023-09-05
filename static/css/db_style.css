@@ -13,21 +13,35 @@ h1 {
     text-align: center;
     color: white;
     margin: auto; /* izvieto virsrakstu pa vidu */
-    border-radius: 0px;
+    border-radius: 5px;
     font-family: helvetica;
 }
+
+/* Table */
 table {
     width: 100%;
     font-size: 14px;
     text-align: left;
+    border: transparent;
+    border-width: 1px;
 }
 th, td {
     width: 10%;
+    border: transparent;
+    border-width: 1px;
 }
+
+/* Text input */
 input {
     width: 200px;
     height: 30px;
     font-size: 14px;
+    border: transparent;
+    border-radius: 5px;
+    outline: none;
+}
+input:focus {
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 120, 0.3)
 }
 .inputEditUser {
     width: 150px;
@@ -39,6 +53,12 @@ textarea {
     font-size: 14px;
     width: 200px;
     height: 60px;
+    border:transparent;
+    border-radius:5px;
+    outline:none;
+}
+textarea:focus {
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 120, 0.3)
 }
 
 /* Buttons */
@@ -53,25 +73,22 @@ button {
 }
 button:hover {
     background-color: #ffb988;
-    color: #000078;
+    color: #821e32;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 120, 0.3);
 }
-.delUser, .editUser, .popup-confirm {
+.smallButton, .popup-confirm {
     width: 100px;
     height: 20px;
     font-size: 12px;
     background-color: #949bf8;
     color: #000078;
-    border: solid;
-    border-width: 1px;
     border-radius: 3px;
     border-color: #949bf8;
 }
-.delUser:hover, .editUser:hover, .popup-confirm:hover {
+.smallButton:hover, .popup-confirm:hover {
     width: 100px;
     height: 20px;
     font-size: 12px;
-    background-color: #ffb988;
-    color: black;
 }
 
 /* JS Popup */
@@ -80,7 +97,7 @@ button:hover {
     position: static;
     width: 180px;
     height: 80px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,120,0.5);
     border: transparent;
     border-width: 1px;
     border-radius: 5px;
@@ -94,11 +111,10 @@ button:hover {
     right: 100%;
     left: 100%;
     height: 100%;
-
     border: transparent;
     border-width: 1px;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 120, 0.5);
     padding: 10px;
     text-align: center;
 }
