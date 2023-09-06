@@ -1,23 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
-    <meta charset="UTF-8">
-    <title>All Messages</title>
-</head>
-<body>
-    <h1>All Messages in Database</h1>
-    <center>
+{% extends 'base.html' %}
+
+{% block title %}
+All Messages
+{% endblock %}
+
+{% block body %}
+
+<h1>All Messages in Database</h1>
+<center>
     <h3>This page shows all database messages</h3>
-    </center>
     <hr>
+
     {% for message in messages %}
-        <form method="post">
-            Message Title: <strong>{{message.title}}</strong><br>
-            Message Text: <strong>{{message.messageText}}</strong><br>
-            Message Priority: <strong>{{message.priority}}</strong><br>
-        </form>
-        <hr>
+
+    <table style="width:90%;">
+        <tr>
+            <th class="msgTh">Title:</th>
+            <td class="msgTd1">{{message.title}}</td>
+            <td class="msgTd2"></td>
+        </tr>
+        <tr>
+            <th class="msgTh">Text:</th>
+            <td class="msgTd1">{{message.messageText}}</td>
+            <td class="msgTd2">
+                <form action="/message_edit" method="POST">
+                    <input type="hidden" name="edit_current_message" value="{{ message.id }}">
+                    <button class="smallButton" type="submit">Edit</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <th class="msgTh">Priority:</th>
+            <td class="msgTd1">{{message.priority}}</td>
+            <td class="msgTd2"></td>
+        </tr>
+    </table>
+
+    <hr>
     {% endfor %}
-</body>
-</html>
+
+</center>
+
+{% endblock %}

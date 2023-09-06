@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/db_style.css')}}">
+    <meta charset="UTF-8">
+    <title>Edit Message</title>
+</head>
+<body>
+    <h1>Edit Message</h1>
+    <center>
+    <h3>In this page you can edit message</h3>
+    <hr><br>
+    <form action="/message_edit" method="POST">  <!-- ar post nodod datus tālāk apstrādei-->
+        <input type="text" name="title" value="{{message.title}}"><br><br>
+        <input type="text" name="messageText" value="{{message.messageText}}"><br><br>
+        <input type="number" min="1" max="3" name="priority" value="{{message.priority}}"><br><br>
+        <input type="hidden" name="submit_data" value="{{ message.id }}">
+        <button class="smallButton" type="submit">Save</button>
+    </form>
+    </center>
+
+</body>
+</html>

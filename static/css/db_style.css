@@ -30,6 +30,22 @@ th, td {
     border: transparent;
     border-width: 1px;
 }
+.msgTh {
+    width: 10%;
+    border: transparent;
+    border-width: 1px;
+}
+.msgTd1 {
+    width: 80%;
+    border: transparent;
+    border-width: 1px;
+}
+.msgTd2 {
+    width: 10%;
+    border: transparent;
+    border-width: 1px;
+    text-align: center;
+}
 
 /* Text input */
 input {

@@ -78,6 +78,35 @@ def message_all():  # Query all posts from the database using the Post model
     return render_template('message_all.html', messages=messages)
 
 
+@app.route("/message_edit", methods=["POST"])
+def message_edit():
+    from Database import Message
+    id_edit = request.form.get("edit_current_message")
+    id_submit = request.form.get("submit_data")
+    print(id_edit, id_submit)
+
+    if id_edit:
+        message = db.session.get(Message, id_edit)
+
+    elif id_submit:
+        message = db.session.get(Message, id_submit)
+        message.title = request.form["title"]
+        message.priority = request.form["priority"]
+
+        try:
+            db.session.commit()
+            print("id_submit: Successfully submitted Message ID")
+            return redirect("/")
+
+        except:
+            return "Error submitting message data"
+
+    else:
+        return "No message ID to edit"
+
+    return render_template("message_edit.html", message=message)
+
+
 @app.route("/user_add", methods=['POST', 'GET'])
 def user_add():
     fn = "/user_add:"
@@ -102,7 +131,7 @@ def user_add():
             return redirect("/")
 
         except:
-            return "Error while adding user to database"
+            return "Error adding user to database"
 
     else:
         return render_template("user_add.html")
