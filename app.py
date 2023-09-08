@@ -73,8 +73,6 @@ def message_all():  # Query all posts from the database using the Post model
     from Database import Message
     messages = Message.query.all()  # Retrieve all Message records from the database
 
-    # add here post delete function
-
     return render_template('message_all.html', messages=messages)
 
 
@@ -83,7 +81,8 @@ def message_edit():
     from Database import Message
     id_edit = request.form.get("edit_current_message")
     id_submit = request.form.get("submit_data")
-    print(id_edit, id_submit)
+    id_delete = request.form.get("delete_data")
+    print(f"id_edit: {id_edit}; id_submit: {id_submit}; id_delete: {id_delete}")
 
     if id_edit:
         message = db.session.get(Message, id_edit)
@@ -91,20 +90,33 @@ def message_edit():
     elif id_submit:
         message = db.session.get(Message, id_submit)
         message.title = request.form["title"]
+        message.messageText = request.form["messageText"]
         message.priority = request.form["priority"]
 
         try:
             db.session.commit()
-            print("id_submit: Successfully submitted Message ID")
+            print("id_submit: Successfully submitted Message changes")
             return redirect("/")
 
         except:
             return "Error submitting message data"
 
+    elif id_delete:
+        message = db.session.get(Message, id_delete)
+
+        try:
+            db.session.delete(message)
+            db.session.commit()
+            print("Successfully deleted Message")
+            return redirect("/")
+
+        except:
+            return "Error deleting message"
+
     else:
         return "No message ID to edit"
 
-    return render_template("message_edit.html", message=message)
+    return render_template("message_edit.html", message=message, popup_message="Delete message?", popup_action="/message_edit", popup_id=message.id)
 
 
 @app.route("/user_add", methods=['POST', 'GET'])
@@ -127,7 +139,7 @@ def user_add():
             user = User(name=name, password=password, age=int(age), isAdmin=isAdmin)
             db.session.add(user)
             db.session.commit()  # save changes to database
-            print(fn, "Successfully added new user")
+            print(fn, "Successfully added new User")
             return redirect("/")
 
         except:
@@ -141,7 +153,7 @@ def user_add():
 def user_all():
     from Database import User
     users = User.query.all()
-    print("/user_all: User information acquired")
+    print("/user_all: Fetched User data")
     return render_template("user_all.html", allUsers=users)
 
 
@@ -153,19 +165,19 @@ def user_edit():
     print(f"id_edit: {id_edit}; id_delete: {id_delete}; id_submit: {id_submit}")
 
     if id_edit:
-        from function import id_edit_fn
+        from function import ur_edit_fn
         id_fn = id_edit
-        return id_edit_fn(id_fn)
+        return ur_edit_fn(id_fn)
 
     elif id_delete:
-        from function import id_delete_fn
+        from function import ur_delete_fn
         id_fn = id_delete
-        return id_delete_fn(id_fn)
+        return ur_delete_fn(id_fn)
 
     elif id_submit:
-        from function import id_submit_fn
+        from function import ur_submit_fn
         id_fn = id_submit
-        return id_submit_fn(id_fn)
+        return ur_submit_fn(id_fn)
 
     else:
         return "No user_id_to_edit"

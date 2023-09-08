@@ -1,0 +1,22 @@
+<!-- POPUP confirmation dialog container -->
+
+<div id="popup" class="popup-container" style="height:80px;">
+    <div class="popup-content">
+        <!-- Example of popup close button
+        <span class="popup-close" onclick="closePopup()">&times;</span> -->
+        <p style="font-family: helvetica; font-size: 10pt; color: #000078;"><b>{{ popup_message }}</b></p>
+        <table>
+            <tr>
+            <td style="text-align:right; padding-right:5px;">
+                <form action="{{ popup_action }}" method="post">
+                    <input type="hidden" name="delete_data" value="{{ popup_id }}">
+                    <button class="popup-confirm" type="submit" style="width:60px;">Yes</button>
+                </form>
+            </td>
+            <td style="text-align:left; padding-left:5px;">
+                <button class="popup-confirm" style="width:60px;" onclick="closePopup()">No</button>
+            </td>
+            </tr>
+        </table>
+    </div>
+</div>

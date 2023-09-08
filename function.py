@@ -3,26 +3,26 @@ from Database import db, User  # db - import the SQLAlchemy database instance
 from flask import render_template, request, redirect
 
 
-def id_edit_fn(id_fn):
+def ur_edit_fn(id_fn):
     user = db.session.get(User, id_fn)
     print("id_edit_fn(): User ID", id_fn, "edit form invoked")
-    return render_template("user_edit.html", user=user)
+    return render_template("user_edit.html", user=user, popup_message="Delete user?", popup_action="/user_edit", popup_id=user.id)
 
 
-def id_delete_fn(id_fn):
+def ur_delete_fn(id_fn):
     user = db.session.get(User, id_fn)
 
     try:
         db.session.delete(user)
         db.session.commit()
-        print("id_delete_fn(): Successfully deleted User ID", id_fn)
+        print("ur_delete_fn(): Successfully deleted User", id_fn)
         return redirect("/")
 
     except:
         return "User not found"
 
 
-def id_submit_fn(id_fn):
+def ur_submit_fn(id_fn):
     user = db.session.get(User, id_fn)
     user.name = request.form["name"]
     user.password = request.form["password"]
@@ -31,8 +31,8 @@ def id_submit_fn(id_fn):
 
     try:
         db.session.commit()  # save changes to database
-        print("id_submit_fn(): Successfully submitted User ID", id_fn, "data")
+        print(f"ur_submit_fn(): Successfully submitted User {id_fn} data")
         return redirect("/")
 
     except:
-        return "Error while changing user data"
+        return "Error changing User data"

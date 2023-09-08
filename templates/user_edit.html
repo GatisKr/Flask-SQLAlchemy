@@ -9,7 +9,7 @@ Edit User
 <h1>Edit User</h1>
 <center>
 <h3>Edit database user data</h3>
-<hr>
+    <hr>
     <form action="/user_edit" method="POST">
         <table style="width:80%;">
             <tr>
@@ -31,8 +31,8 @@ Edit User
             <tr>
                 <!-- SAVE DATA -->
                 <td style="height:30px; text-align:center;">
-                    <input type="hidden" name="submit_data" value="{{ user.id }}">
-                    <button class="smallButton" type="submit" style="border:solid; border-width:1px; border-color: #949bf8;">Save Data</button>
+                    <input type="hidden" name="submit_data" value="{{user.id}}">
+                    <button class="smallButton" type="submit">Save Data</button>
                 </td>
             </tr>
         </table>
@@ -42,46 +42,16 @@ Edit User
             <tr>
                 <!-- DELETE DATA -->
                 <td style="height:30px; text-align:center;">
-                    <!-- <input type="hidden" name="delete_data" value="{{ user.id }}"> -->
-                    <!-- <button class="editUser" type="submit" style="color:red; border:solid; border-width:1px; border-color: #949bf8;">Delete User</button> -->
-                    <button class="smallButton" type="button" onclick="deletePopup()">Delete User</button>
+                <button class="smallButton" type="button" onclick="deletePopup()">Delete User</button>
                 </td>
             </tr>
         </table>
     </form>
-<hr>
-<!-- POPUP container -->
-<div id="popup" class="popup-container">
-    <div class="popup-content">
-        <!-- This is example of close button
-        <span class="popup-close" onclick="closePopup()">&times;</span> -->
-        <p style="font-family: helvetica; font-size: 10pt; color: #000078;"><b>Confirm user delete?</b></p>
-        <table>
-            <tr>
-            <td style="text-align:right; padding-right:5px;">
-                <form action="/user_edit" method="post">
-                    <input type="hidden" name="delete_data" value="{{ user.id }}">
-                    <button class="popup-confirm" type="submit" style="width:60px;">Yes</button>
-                </form>
-            </td>
-            <td style="text-align:left; padding-left:5px;">
-                <button class="popup-confirm" style="width:60px;" onclick="closePopup()">No</button>
-            </td>
-            </tr>
-        </table>
-    </div>
-</div>
+    <hr>
+    <!-- import POPUP container -->
+    {% include "popup.html" %}
 </center>
 
-<script>
-    function deletePopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "block";
-    }
+<script src="/static/js/popup.js"></script>
 
-    function closePopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "none";
-    }
-</script>
 {% endblock %}
